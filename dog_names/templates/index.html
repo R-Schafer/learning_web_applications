@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Dog Names
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+        <!-- empty column for keep items in the center of page -->
+          <div class="col">
+          </div>
+
+          <div class="col-6">
+                <h1 class="text-center">Dog Names</h1>
+
+                <!-- Enter dog name section -->
+                <form method="post" class=" text-center m-4">
+                    <input type="text" name="add_name" class="form-control" autocomplete="off" placeholder="Enter Dog Name" autofocus>
+                 </form>
+
+                <!-- Listing dog name section -->
+                <ul style="list-style: none;">
+                    {% for i in range(dogs|length) %}
+                        {% set dog = dogs[i] %}
+                        <li>
+                            <form method="post" class="text-left mb-2">
+                                
+                                <!-- deleting a dog from the list -->
+                                <button class="btn btn-outline-secondary" name="delete_name" value="{{ dog.name }}" type="submit">❌</button>
+                                        
+                                <!-- adding an 'u-pvote' button (unless in 0th position'-->
+                                {% if i > 0 %} 
+                                    <button class="btn btn-outline-secondary" name="move_up" value="{{ dog.name }}" type="submit">🔼</button>
+                                {% else %}
+                                    <button class="btn btn-outline-secondary" name="move_up" value="{{ dog.name }}" type="submit" disabled>🔼</button>
+                                {% endif %}
+
+                                <!-- adding a "down-vote' button (unless in last position'-->
+                                {% if i < (dogs | length - 1) %}
+                                    <button class="btn btn-outline-secondary" name="move_down" value="{{ dog.name }}" type="submit">🔽</button>
+                                {% else %}
+                                <button class="btn btn-outline-secondary" name="move_down" value="{{ dog.name }}" type="submit" disabled>🔽</button>
+                                {% endif %}
+
+                                {{ dog.name }}, {{ dog.count }}                       
+                                
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- empty column for keep items in the center of page -->
+            <div class="col">
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

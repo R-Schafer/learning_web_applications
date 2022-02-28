@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+To-Do
+{% endblock %}
+
+{% block body %}
+<div class="container-sm">
+
+  <!-- Heading -->
+  <div class="col-md-12 p-2">
+    <h1 class="text-center m-5">TO-DO LIST</h1>
+  </div>
+
+  <div class="row justify-content-start p-1">
+
+    <!-- Left container -->
+    <div class="col-3 p-1">
+
+      <!-- Toggle Buttons -->
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="toggle1" checked>
+        <label class="form-check-label" for="toggle1">All Items</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="toggle2" checked>
+        <label class="form-check-label" for="toggle2">Active Items</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="toggle3" checked>
+        <label class="form-check-label" for="toggle3">Completed Items</label>
+      </div>
+    </div>
+
+
+    <!-- Right container -->
+    <div class="col-6">
+
+      <!-- Adding To-Dos Box -->
+      <div class="input-group mb-3">
+        <form class="input-group" method="post" autocomplete="off">
+          <input type="text" class="border border-dark form-control rounded-end" placeholder="Add Task" name="new_todo">
+          <button type="submit" class="rounded btn btn-link link-dark"><i class="bi bi-plus-circle-fill"></i></button>
+        </form>
+      </div>
+
+
+      <!-- Items in TO-Do List -->
+      <div class="d-flex flex-column">
+        {% for i in range(todos|length) %}
+          {% set item = todos[i] %}
+
+          <div class="d-flex justify-content-between">
+            <div class="form-check">
+              <!-- Crossed Off -->
+              {% if item["done"] %}
+                <input class="form-check-input" type="checkbox" value="" id="Todo{{ i }}" checked>
+                <label class="form-check-label text-decoration-line-through" for="Todo{{ i }}">{{ item["action"] }}</label>
+              <!-- Not Crossed Off -->
+              {% else %}
+                <input class="form-check-input" type="checkbox" value="" id="Todo{{ i }}">
+                <label class="form-check-label" for="Todo{{ i }}">{{ item["action"] }}</label>
+              {% endif %}
+            </div>
+
+            <!-- Edit & Trash Icon -->
+            <div>
+              <button type="button" class="btn btn-link"><i class="bi bi-pencil-fill"></i></button>
+              <button type="button" class="btn btn-link link-dark"><i class="bi bi-trash-fill"></i></button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+<!-- Disable Toggle Button -->
+<!-- <div class="form-check form-switch">
+<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDisabled" disabled>
+<label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
+</div> -->
+
+<!-- Disable Check Box -->
+<!-- <div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+<label class="form-check-label" for="defaultCheck2">
+Disabled checkbox
+</label>
+</div> -->

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Google Advanced Search</title>
+
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: left;
+            margin: 30px;
+            font-size: 25px;
+        }
+
+        .advanced-search {
+            display: flex;
+            padding: 30px;
+        }
+
+        .labels {
+            display: flex; 
+            flex-direction: column; 
+            width: 25%;
+            padding-left: 20px;
+        }
+
+        .text-box {
+            display: flex; 
+            flex-direction: column; 
+            width: 75%;
+        }
+
+        #button {
+            background-color: blue;
+            border: blue;
+            color: white;
+            margin: 35px;
+        }
+
+        a {
+            font-size: 20px;
+            display: block;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        a:link {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: purple;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+    <a href="index.html">Google Directory</a>
+
+    <h1>Google Advanced Search</h1>
+
+    <h2>Find pages with...</h2>
+
+    
+    <form action="https://google.com/search">
+        <div class="advanced-search">
+            <div class="labels">
+                <label style="margin-bottom: 10px" for="all-words">All these words:</label>
+                <label style="margin-bottom: 10px" for="exact-phrase">This exact word or phrase:</label>
+                <label style="margin-bottom: 10px" for="any-words">Any of these words:</label>
+                <label style="margin-bottom: 10px" for="none-words">None of these words:</label>
+            </div>
+
+            <div class="text-box">
+                <input id="all-words" style="margin-bottom: 10px" type="text" name="as_q">
+                <input id="exact-phrase" style="margin-bottom: 10px" type="text" name="as_epq">        
+                <input id="any-words" style="margin-bottom: 10px" type="text" name="as_oq">
+                <input id="none-words" type="text" name="as_eq">
+            </div>
+        </div>
+
+        <input id="button" type="submit" value="Advance Search">
+    </form>
+
+    
+</body>
+
+</html>
