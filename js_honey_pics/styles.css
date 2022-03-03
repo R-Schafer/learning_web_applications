@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+#page-container {
+    display:flex;
+    flex-direction:column;
+}
+
+/* header */
+
+header {
+    font-size:36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+button {
+    background-color:blue;
+    font-size: 18px;
+    color: white;
+    border-radius: 25px;
+    border:none;
+    padding: .5rem;
+    margin: 2rem;
+    align-self: center;
+}
+
+#photo-container {
+    display:flex;
+    justify-content:center;
+}
+
+.photos {
+    margin: 1rem;
+    margin-top: 3rem;
+}
+
+.chosen {
+    transform: scale(1.5);
+    border-color: red;
+    box-shadow: 0 0 1rem red;
+}
