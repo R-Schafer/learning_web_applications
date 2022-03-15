@@ -1,0 +1,51 @@
+html {
+  box-sizing: border-box;
+  background: black;
+}
+
+body {
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.panels {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+
+.panel {
+  transition: flex 0.7s cubic-bezier(0.61, 0.6, 0.75, 0.75);
+  background-size: cover;
+  background-position: center;
+  flex: 1;
+}
+
+.panel1 {
+  background-image: url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500);
+}
+.panel2 {
+  background-image: url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500);
+}
+.panel3 {
+  background-image: url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500);
+}
+.panel4 {
+  background-image: url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500);
+}
+.panel5 {
+  background-image: url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500);
+}
+
+.panel.open {
+  flex: 5;
+}
+
+.panel.close {
+  flex: 1;
+}
