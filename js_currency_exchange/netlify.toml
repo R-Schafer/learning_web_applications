@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/currency/*"
+  to = "https://v6.exchangerate-api.com/v6/TODO/:splat"
+  status = 200
+  force = true
