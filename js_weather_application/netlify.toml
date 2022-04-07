@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/weather/*"
+to = "https://api.weatherapi.com/v1/:splat?q=:q&days=:days&key=TODO"
+status = 200
+query = { q = ":q", days = ":days" }
