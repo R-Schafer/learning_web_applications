@@ -1,16 +1,41 @@
 import { parse } from "https://cdn.jsdelivr.net/npm/date-fns@v2.28.0/+esm";
 import { zonedTimeToUtc } from "https://cdn.jsdelivr.net/npm/date-fns-tz@1.3.3/+esm";
-import { FetchWrapper } from "./fetch-wrapper.js";
+
+// -------------------------------------------------------------------------------------
+// Model
+
+let STATE = {
+  data: null,
+  error: null,
+};
+
+// -------------------------------------------------------------------------------------
+// View
 
 const form = document.querySelector("#weather-location");
 const input = document.querySelector("#input-location");
 const main = document.querySelector("main");
 
-// redirect through netlify with /weather rather than API key
-const weatherAPI = new FetchWrapper("/weather");
+// rendering the state
+const render = () => {
+  main.innerHTML = App(STATE);
+};
 
-// building the HTML as a string
-const App = (data) => {
+// building the HTML as a string, depending on state
+const App = (state) => {
+  if (state.data) {
+    return Weather(state.data);
+  }
+
+  if (state.error) {
+    return ErrorMessage(state.error);
+  }
+
+  return Spinner();
+};
+
+// weather screen
+const Weather = (data) => {
   return `
     <!-- first section -->
     ${CurrentWeatherSection(data)}
@@ -26,7 +51,7 @@ const App = (data) => {
   `;
 };
 
-// spinner
+// spinner screen
 const Spinner = () => {
   return `
     <div class="spinner-container">
@@ -44,12 +69,7 @@ const ErrorMessage = (message) => {
   `;
 };
 
-// parsing the date for Safari
-const parseDate = (date) => {
-  return parse(date, "yyyy-MM-dd HH:mm", new Date());
-};
-
-// for the first section
+// for the first section of weather screen
 const CurrentWeatherSection = (data) => {
   const currentHour = findCurrentHour(data);
   return `
@@ -121,20 +141,7 @@ const CurrentWeatherSection = (data) => {
   `;
 };
 
-// for the first section
-const findCurrentHour = (data) => {
-  const localTime = parseDate(data.location.localtime);
-
-  for (let i = 0; i < data.forecast.forecastday[0].hour.length; i++) {
-    const hour = data.forecast.forecastday[0].hour[i];
-    const hourTime = parseDate(hour.time);
-    if (localTime.getHours() === hourTime.getHours()) {
-      return hour;
-    }
-  }
-};
-
-// for the second section
+// for the second section of weather screen
 const AverageWeatherSection = (data) => {
   return `
     <div id="second-section-of-page">
@@ -159,7 +166,7 @@ const AverageWeatherSection = (data) => {
   `;
 };
 
-// for the second section
+// for the second section of weather screen
 const AverageWeatherSlot = (timeOfDay, hour) => {
   return `
     <div class="average-section-container">
@@ -188,7 +195,7 @@ const AverageWeatherSlot = (timeOfDay, hour) => {
   `;
 };
 
-// for the third section
+// for the third section of weather screen
 const HourlyWeatherSection = (data) => {
   const hours = findForecastHours(data);
   return `
@@ -205,7 +212,7 @@ const HourlyWeatherSection = (data) => {
   `;
 };
 
-// for the third section
+// for the third section of weather screen
 const HourlyWeatherSlot = (hour) => {
   return `
     <div class="hourly-content">
@@ -251,30 +258,7 @@ const HourlyWeatherSlot = (hour) => {
   `;
 };
 
-// for the third section
-const findForecastHours = (data) => {
-  const hourList = [];
-
-  const currentTime = parseDate(data.location.localtime);
-  currentTime.setMinutes(0);
-
-  const endTime = parseDate(data.location.localtime);
-  endTime.setHours(endTime.getHours() + 12);
-
-  for (let j = 0; j < 2; j++) {
-    for (let i = 0; i < data.forecast.forecastday[j].hour.length; i++) {
-      if (
-        parseDate(data.forecast.forecastday[j].hour[i].time) >= currentTime &&
-        parseDate(data.forecast.forecastday[j].hour[i].time) < endTime
-      ) {
-        hourList.push(data.forecast.forecastday[j].hour[i]);
-      }
-    }
-  }
-  return hourList;
-};
-
-// for the fourth section
+// for the fourth section of weather screen
 const DailyWeatherSection = (data) => {
   return `
     <div id="fourth-section-of-page">
@@ -292,7 +276,7 @@ const DailyWeatherSection = (data) => {
   `;
 };
 
-// for the fourth section
+// for the fourth section of weather screen
 const DailyWeatherSlot = (data, forecastday) => {
   const date = zonedTimeToUtc(forecastday.date, data.location.tz_id);
 
@@ -328,38 +312,113 @@ const DailyWeatherSlot = (data, forecastday) => {
   `;
 };
 
-form.addEventListener("submit", (event) => {
+// -------------------------------------------------------------------------------------
+// Update
+
+// event for user input
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  main.innerHTML = Spinner();
+  // change state to loading
+  STATE.data = null;
+  STATE.error = null;
+
+  render();
 
   // disable input so user can't type another location while loading
   input.disabled = true;
 
-  weatherAPI
-    .get(`/forecast.json?q=${input.value}&days=5`)
-    .then((data) => {
-      main.innerHTML = App(data);
-    })
-    .catch(() => {
-      main.innerHTML = ErrorMessage(
-        "Something went wrong, please enter a valid location."
-      );
-    })
-    .finally(() => {
-      // re-enabling the input section
-      input.disabled = false;
-    });
+  try {
+    const data = await fetchWeather(input.value);
+
+    // changing state
+    STATE.data = data;
+
+    render();
+  } catch {
+    // changing state
+    STATE.error = "Something went wrong, please enter a valid location.";
+
+    render();
+  } finally {
+    // re-enabling the input section
+    input.disabled = false;
+  }
 });
 
-main.innerHTML = Spinner();
+// starting function
+const start = async () => {
+  render();
 
-// default page load
-weatherAPI
-  .get(`/forecast.json?q=78723&days=5`)
-  .then((data) => {
-    main.innerHTML = App(data);
-  })
-  .catch(() => {
-    main.innerHTML = ErrorMessage("Sorry, we are currently offline.");
-  });
+  // default page load
+  try {
+    const data = await fetchWeather("78613");
+
+    // changing state
+    STATE.data = data;
+
+    render();
+  } catch {
+    // changing state
+    STATE.error = "Sorry, we are currently offline.";
+
+    render();
+  }
+};
+
+// -------------------------------------------------------------------------------------
+// Utility
+
+// parsing the date for Safari
+const parseDate = (date) => {
+  return parse(date, "yyyy-MM-dd HH:mm", new Date());
+};
+
+// for finding the current hour in the first weather section
+const findCurrentHour = (data) => {
+  const localTime = parseDate(data.location.localtime);
+
+  for (let i = 0; i < data.forecast.forecastday[0].hour.length; i++) {
+    const hour = data.forecast.forecastday[0].hour[i];
+    const hourTime = parseDate(hour.time);
+    if (localTime.getHours() === hourTime.getHours()) {
+      return hour;
+    }
+  }
+};
+
+// for finding the next 12 hours in the third weather section
+const findForecastHours = (data) => {
+  const hourList = [];
+
+  const currentTime = parseDate(data.location.localtime);
+  currentTime.setMinutes(0);
+
+  const endTime = parseDate(data.location.localtime);
+  endTime.setHours(endTime.getHours() + 12);
+
+  for (let j = 0; j < 2; j++) {
+    for (let i = 0; i < data.forecast.forecastday[j].hour.length; i++) {
+      if (
+        parseDate(data.forecast.forecastday[j].hour[i].time) >= currentTime &&
+        parseDate(data.forecast.forecastday[j].hour[i].time) < endTime
+      ) {
+        hourList.push(data.forecast.forecastday[j].hour[i]);
+      }
+    }
+  }
+  return hourList;
+};
+
+// redirect through netlify with /weather rather than API key
+const fetchWeather = async (q) => {
+  const response = await fetch(`/weather/forecast.json?q=${q}&days=5`);
+
+  if (response.ok) {
+    return response.json();
+  }
+
+  throw new Error();
+};
+
+start();
