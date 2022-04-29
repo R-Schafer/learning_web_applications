@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: #4a5859;
+  background-color: #f7f5f0;
 }
 
 main {
@@ -46,16 +46,16 @@ form {
   padding: 0.5%;
   outline: none;
   font-weight: 800;
-  color: #cbbeb3;
+  color: #ad4304;
   border-bottom: 2px solid #32373b;
 }
 
 input[type="text"] {
-  background-color: #4a5859;
+  background-color: #f7f5f0;
 }
 
 ::placeholder {
-  color: rgb(106 106 106);
+  color: #cbbeb3;
   font-weight: 800;
 }
 
@@ -80,7 +80,7 @@ li {
   display: flex;
   align-items: center;
   border-bottom: 2px solid #32373b;
-  color: #cbbeb3;
+  color: #ad4304;
   font-weight: 800;
   letter-spacing: 0.1rem;
 }
@@ -93,19 +93,19 @@ li input {
   height: 15px;
   border-radius: 50%;
   transition: box-shadow 0.3s;
-  background: #4a5859;
-  border: 2px solid #cbbeb3;
+  background: #f7f5f0;
+  border: 2px solid #ad4304;
   -webkit-appearance: none;
 }
 
 /* when checkbox is checked */
 li input:checked {
-  box-shadow: inset 0 0 0 20px rgb(106 106 106);
+  box-shadow: inset 0 0 0 20px #cbbeb3;
   border: none;
 }
 
 li input:checked + span {
-  color: rgb(106 106 106);
+  color: #cbbeb3;
   text-decoration: line-through;
 }
 
@@ -120,7 +120,7 @@ li button {
   font-size: 1rem;
   font-weight: 800;
   border: none;
-  color: #cbbeb3;
+  color: #32373b;
   background-color: transparent;
   padding-left: 5px;
   flex-shrink: 0;
@@ -129,7 +129,7 @@ li button {
 /* applies hover features to devices that support it (removed from mobile since it was sticky) */
 @media (hover: hover) {
   li button:hover {
-    color: #32373b;
+    color: #ad4304;
   }
   li input:hover {
     border: 2px solid #32373b;
@@ -143,6 +143,6 @@ li button {
 }
 
 #footer span {
-  color: rgb(106 106 106);
+  color: #cbbeb3;
   font-size: 1rem;
 }
