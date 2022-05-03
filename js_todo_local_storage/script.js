@@ -21,6 +21,36 @@ const saveToLocalStorage = () => {
 // looking to see if there is anything saved, if not, show empty
 STATE = getFromLocalStorage() || STATE;
 
+const addItem = (name) => {
+  // prohibiting a blank input isn't added to list
+  if (name.trim() !== "") {
+    STATE.push({ name: name.trim(), done: false, editing: false });
+    return true;
+  }
+  return false;
+};
+
+const deleteItem = (index) => {
+  STATE.splice(index, 1);
+};
+
+const completeItem = (index) => {
+  STATE[index].done = !STATE[index].done;
+};
+
+const startEditItem = (index) => {
+  STATE[index].editing = true;
+};
+
+const finishEditItem = (index, name) => {
+  if (name.trim() !== "") {
+    STATE[index].name = name.trim();
+    STATE[index].editing = false;
+  } else {
+    deleteItem(index);
+  }
+};
+
 // -------------------------------------------------------------------------------------
 // View
 
@@ -42,10 +72,20 @@ const Main = (state) => {
 
 // rendering item
 const Todo = (item) => {
+  if (item.editing) {
+    return `
+      <li>
+        <input class="item" type="checkbox" ${item.done ? "checked" : ""} />
+        <input class="item-edit" type="text" value="${item.name}" />
+        <button type="button">X</button>
+      </li>
+    `;
+  }
+
   return `
     <li>
       <input class="item" type="checkbox" ${item.done ? "checked" : ""} />
-      <span>${item.name}</span>
+      <span class="item-name">${item.name}</span>
       <button type="button">X</button>
     </li>
   `;
@@ -54,50 +94,12 @@ const Todo = (item) => {
 // -------------------------------------------------------------------------------------
 // Update
 
-// checking for delete click or complete click
-const completeOrDeleteItem = (e) => {
-  if (e.target.tagName == "INPUT") {
-    const checkBox = e.target;
-    const listItem = checkBox.closest("li");
-
-    // make an array out of the list children
-    // getting the li's
-    const listOfItems = Array.from(listItem.closest("ul").children);
-    // finding the index
-    const index = listOfItems.indexOf(listItem);
-    // changing the status of done to the opposite
-    STATE[index].done = !STATE[index].done;
-    // save
-    saveToLocalStorage();
-
-    render();
-  }
-
-  if (e.target.tagName == "BUTTON") {
-    const deleteBtn = e.target;
-    const listItem = deleteBtn.closest("li");
-
-    // make an array out of the list children
-    // getting the li's
-    const listOfItems = Array.from(listItem.closest("ul").children);
-    // finding the index
-    const index = listOfItems.indexOf(listItem);
-    // remove item from list
-    STATE.splice(index, 1);
-    // save
-    saveToLocalStorage();
-
-    render();
-  }
-};
-
 // adding item to the state
-const addItem = (e) => {
+const onFormSubmit = (e) => {
   e.preventDefault();
 
-  // prohibiting a blank input isn't added to list
-  if (input.value.trim() !== "") {
-    STATE.push({ name: input.value.trim(), done: false });
+  let added = addItem(input.value);
+  if (added) {
     saveToLocalStorage(STATE);
     render();
   }
@@ -105,14 +107,93 @@ const addItem = (e) => {
   input.value = "";
 };
 
+// complete, delete, start edit, and finish edit
+const onDocumentClick = (e) => {
+  // turning the ul into an array
+  const listOfItems = Array.from(main.querySelector("ul").children);
+
+  // finish edit - runs to finalize any in progress edits
+  for (let i = 0; i < listOfItems.length; i++) {
+    let input = listOfItems[i].querySelector(".item-edit");
+
+    // if there is an in progress edit and the user clicks out of it, we save the current text
+    if (input && e.target !== input) {
+      finishEditItem(i, input.value);
+      // save
+      saveToLocalStorage();
+      render();
+    }
+  }
+
+  // fnding the li
+  const listItem = e.target.closest("li");
+  if (!listItem) {
+    return;
+  }
+
+  // finding the index
+  const index = listOfItems.indexOf(listItem);
+
+  // delete
+  if (e.target.tagName === "BUTTON") {
+    deleteItem(index);
+    // save
+    saveToLocalStorage();
+    render();
+  }
+
+  // complete
+  if (e.target.type === "checkbox") {
+    completeItem(index);
+    // save
+    saveToLocalStorage();
+    render();
+  }
+
+  // start edit
+  if (e.target.classList.contains("item-name")) {
+    startEditItem(index);
+    // save
+    saveToLocalStorage();
+    render();
+
+    // focusing cursor on editing
+    const input = main.querySelector(".item-edit");
+    input.focus();
+    input.setSelectionRange(-1, -1);
+  }
+};
+
+// saving edit with enter
+const onMainKeyup = (e) => {
+  if (e.code === "Enter") {
+    // finding the li
+    const listItem = e.target.closest("li");
+    // turning the ul into an array
+    const listOfItems = Array.from(main.querySelector("ul").children);
+    // finding the index
+    const index = listOfItems.indexOf(listItem);
+
+    finishEditItem(index, e.target.value);
+
+    // save
+    saveToLocalStorage();
+    render();
+  }
+};
+
 // -------------------------------------------------------------------------------------
 // event listeners
 
 // add item to list
-form.addEventListener("submit", addItem);
+form.addEventListener("submit", onFormSubmit);
 
-// checking for delete click or complete click
-main.addEventListener("click", completeOrDeleteItem);
+// checking for delete click, complete click, or edit click
+document.addEventListener("click", onDocumentClick);
+
+// finalize editing - enter
+main.addEventListener("keyup", onMainKeyup, true);
+
 // -------------------------------------------------------------------------------------
 
 render();
