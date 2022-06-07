@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Library</title>
+  </head>
+  <body>
+    <header>
+      <h1>Add Book to Your Library</h1>
+    </header>
+    <main>
+      <section id="add_book">
+        <form action="#" method="post">
+          <fieldset>
+            <div class="title_info">
+              <label for="name">Title:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                autocomplete="off"
+                required
+              />
+              <span hidden>Title is required.</span>
+            </div>
+
+            <div class="author_info">
+              <label for="author">Author:</label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                autocomplete="off"
+                required
+              />
+              <span hidden>Author is required.</span>
+            </div>
+
+            <div class="read_info">
+              <label for="read">Read yet:</label>
+              <input
+                type="text"
+                id="read"
+                name="read"
+                autocomplete="off"
+                required
+              />
+              <span hidden>Input is required.</span>
+            </div>
+
+            <input type="submit" value="Add" />
+          </fieldset>
+        </form>
+        <div id="confirm"></div>
+      </section>
+      <section id="library_books">
+        <div class="library_headings">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" id="title_heading">TITLE</th>
+                <th scope="col" id="author_heading">AUTHOR</th>
+                <th scope="col">READ YET</th>
+                <th scope="col">REMOVE</th>
+              </tr>
+            </thead>
+            <tbody id="library"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
