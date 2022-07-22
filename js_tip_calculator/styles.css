@@ -1,0 +1,180 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+  font-size: 20px;
+  background-color: rgb(196 220 213);
+}
+
+header {
+  text-align: center;
+  margin-top: 15px;
+  color: rgb(4, 52, 53);
+}
+
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  max-width: 400px;
+  border-radius: 8px;
+  margin: 15px;
+  padding: 20px;
+  background-color: white;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  color: rgb(71 97 97);
+}
+
+.bill-section,
+.number-people-section,
+.custom-container {
+  display: flex;
+  flex-direction: column;
+}
+.number-people-section,
+.custom-container {
+  margin-top: 20px;
+}
+
+#bill,
+#people,
+#custom-tip {
+  border: none;
+  background-color: #efefef;
+  border-radius: 3px;
+  padding: 5px 10px;
+  min-width: 237px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 800;
+  font-size: 20px;
+  color: rgb(71 97 97);
+  outline-color: rgb(71 97 97);
+  text-align: right;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input::placeholder {
+  text-align: right;
+  color: rgb(169, 169, 170);
+}
+
+.tip-amount-section {
+  margin-bottom: 20px;
+}
+
+.tip-percent-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 5px;
+}
+
+.percent-amount {
+  width: 118px;
+  flex-grow: 1;
+  background-color: rgb(4, 52, 53);
+  border: 2px solid rgb(4, 52, 53);
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 3px;
+  color: white;
+}
+
+.percent-amount:hover,
+.percent-amount.clicked {
+  cursor: pointer;
+  background-color: rgb(196 220 213);
+  color: rgb(4, 52, 53);
+}
+
+.number-people-section {
+  margin-bottom: 20px;
+}
+
+.output-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(4, 52, 53);
+  border-radius: 8px;
+}
+
+.total-ticket-amount-display-section,
+.per-person-display-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 10px;
+  padding: 0 5px;
+  color: white;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+.totals,
+.per-person {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tip-display,
+.total-display,
+.bill-display,
+.person-bill-display,
+.person-tip-display,
+.person-total-display {
+  font-size: 30px;
+}
+
+.reset,
+.calculate {
+  padding: 5px;
+  background-color: rgb(4, 52, 53);
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 3px;
+  margin: 10px 8px 20px 8px;
+  color: white;
+  width: 95%;
+  font-size: 20px;
+}
+
+.calculate {
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.reset:hover,
+.calculate:hover {
+  cursor: pointer;
+  background-color: rgb(196 220 213);
+  color: rgb(4, 52, 53);
+  border-color: rgb(196 220 213);
+}
+
+.bill-warning,
+.people-warning,
+.custom-warning,
+.tip-warning {
+  color: red;
+  font-size: 16px;
+  padding-top: 3px;
+}

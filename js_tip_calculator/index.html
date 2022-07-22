@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>TiPS</h1>
+    </header>
+    <div class="outer-container">
+      <div class="input-container">
+        <section class="bill-section">
+          <label for="bill">Bill</label>
+          <input
+            type="number"
+            id="bill"
+            name="bill"
+            placeholder="$86.34"
+            autocomplete="off"
+          />
+          <span class="bill-warning"></span>
+        </section>
+        <section class="number-people-section">
+          <label for="people">Number of People</label>
+          <input
+            type="number"
+            id="people"
+            name="people"
+            placeholder="4"
+            autocomplete="off"
+          />
+          <span class="people-warning"></span>
+        </section>
+        <section class="tip-amount-section">
+          <span>Tip %</span>
+          <div class="tip-percent-container">
+            <div class="percent-amount">5%</div>
+            <div class="percent-amount">10%</div>
+            <div class="percent-amount">15%</div>
+            <div class="percent-amount">20%</div>
+          </div>
+          <span class="tip-warning"></span>
+          <div class="custom-container">
+            <label for="custom-tip">Custom Tip %</label>
+            <input
+              type="number"
+              id="custom-tip"
+              name="custom-tip"
+              autocomplete="off"
+              placeholder="%"
+            />
+          </div>
+          <span class="custom-warning"></span>
+        </section>
+      </div>
+      <div class="output-container">
+        <section class="total-ticket-amount-display-section">
+          <h3>Overall Totals</h3>
+          <div class="totals">
+            <span>Bill</span>
+            <div class="bill-display"></div>
+          </div>
+          <div class="totals">
+            <span>Tip</span>
+            <div class="tip-display"></div>
+          </div>
+          <div class="totals">
+            <span>Bill + Tip</span>
+            <div class="total-display"></div>
+          </div>
+        </section>
+        <section class="per-person-display-section">
+          <h3>Per Person Totals</h3>
+          <div class="per-person">
+            <span>Bill</span>
+            <div class="person-bill-display"></div>
+          </div>
+          <div class="per-person">
+            <span>Tip</span>
+            <div class="person-tip-display"></div>
+          </div>
+          <div class="per-person">
+            <span>Bill + <span class="chosenTipPercent">Tip</span></span>
+            <div class="person-total-display"></div>
+          </div>
+        </section>
+        <section class="finalize-section">
+          <button class="calculate">Calculate</button>
+          <button class="reset">Reset</button>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
