@@ -11,44 +11,37 @@ html,
 body {
   height: 100%;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
 }
 
 .outer_container {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   align-items: center;
   margin: 100px 0;
 }
 
-.input_container {
+.display_container {
   display: flex;
   justify-content: center;
-  border-top-right-radius: 15px;
-  border: none;
-  outline: none;
+  height: 65px;
 }
 
-input[type="number"] {
+.display {
   width: 100%;
-  padding: 16px 20px;
+  padding: 14px 20px;
   box-sizing: border-box;
   text-align: end;
-  font-size: 25px;
+  font-size: 27px;
   font-weight: 800;
   color: white;
   border: none;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   background-color: #085261;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-input[type="number"]:focus-visible {
-  outline: none;
 }
 
 .key_container {
@@ -92,7 +85,7 @@ input[type="number"]:focus-visible {
 
 .keys:hover {
   cursor: pointer;
-  border: 1px solid navy;
+  border: 1px solid black;
 }
 
 footer {
