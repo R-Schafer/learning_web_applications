@@ -9,44 +9,44 @@ function main() {
 function handleKeyClick(e) {
   e.preventDefault();
 
-  if (parseInt(e.target.innerHTML, 10) < 10 || e.target.innerHTML === ".") {
+  if (parseInt(e.target.textContent, 10) < 10 || e.target.textContent === ".") {
     // for clearing the display right before user puts in 2nd number
     if (STATE[1] !== "" && STATE[2] === "") {
-      display.innerHTML = "";
+      display.textContent = "";
     }
-    display.innerHTML += e.target.innerHTML;
-    updateState(display.innerHTML);
+    display.textContent += e.target.textContent;
+    updateState(display.textContent);
   }
 
-  if (e.target.innerHTML === "C") {
+  if (e.target.textContent === "C") {
     updateState("clear");
   }
 
-  if (e.target.innerHTML === "⏎") {
+  if (e.target.textContent === "⏎") {
     updateState("del");
   }
 
-  if (e.target.innerHTML === "+") {
+  if (e.target.textContent === "+") {
     updateState("add");
   }
 
-  if (e.target.innerHTML === "-") {
+  if (e.target.textContent === "-") {
     updateState("sub");
   }
 
-  if (e.target.innerHTML === "×") {
+  if (e.target.textContent === "×") {
     updateState("mul");
   }
 
-  if (e.target.innerHTML === "÷") {
+  if (e.target.textContent === "÷") {
     updateState("div");
   }
 
-  if (e.target.innerHTML === "+/-") {
+  if (e.target.textContent === "+/-") {
     updateState("neg");
   }
 
-  if (e.target.innerHTML === "=") {
+  if (e.target.textContent === "=") {
     updateState("equals");
   }
 }
@@ -96,9 +96,9 @@ function updateState(value) {
   // backspace
   if (value === "del") {
     if (STATE[1] === "") {
-      STATE[0] = display.innerHTML.slice(0, -1);
+      STATE[0] = display.textContent.slice(0, -1);
     } else {
-      STATE[2] = display.innerHTML.slice(0, -1);
+      STATE[2] = display.textContent.slice(0, -1);
     }
   }
 
@@ -140,9 +140,9 @@ function calc() {
 
 function render() {
   if (STATE[1] === "" || STATE[2] === "") {
-    display.innerHTML = STATE[0];
+    display.textContent = STATE[0];
   } else {
-    display.innerHTML = STATE[2];
+    display.textContent = STATE[2];
   }
 }
 
