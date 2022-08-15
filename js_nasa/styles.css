@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+html,
+body {
+  text-align: center;
+}
+
+header {
+  margin: 15px 10px;
+}
+
+main {
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 800;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.img_credit {
+  font-style: italic;
+  font-size: 12px;
+}
+
+p {
+  padding: 10px;
+}
+
+footer {
+  font-size: 14px;
+  padding: 5px;
+}
+
+@media screen and (min-width: 800px) {
+  img,
+  .description {
+    max-width: 80%;
+    align-self: center;
+  }
+}

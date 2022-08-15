@@ -1,0 +1,4 @@
+[[redirects]]
+from = "/nasa/*"
+to = "https://api.nasa.gov/:splat?api_key=TODO"
+status = 200
