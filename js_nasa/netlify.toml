@@ -1,4 +1,5 @@
 [[redirects]]
 from = "/nasa/*"
-to = "https://api.nasa.gov/:splat?api_key=TODO"
+to = "https://api.nasa.gov/:splat?date=:date&api_key=TODO"
 status = 200
+query = { date = ":date" }

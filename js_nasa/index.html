@@ -9,12 +9,23 @@
     <title>NASA</title>
   </head>
   <body>
-    <header><h1>Astronomy Picture of the Day</h1></header>
+    <header>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/2449px-NASA_logo.svg.png"
+        alt="nasa logo"
+        id="logo"
+      />
+      <h1>Astronomy Picture of the Day</h1>
+    </header>
 
     <main>
       <h3 class="title"></h3>
-      <img src="" alt="" />
-      <span class="img_credit"></span>
+      <input id="date" type="date" min="2015-01-01" />
+      <img src="" alt="" id="picture_of_day" />
+      <span class="img_credit">
+        Image Credit:
+        <a href="https://apod.nasa.gov/apod/archivepix.html">NASA</a>
+      </span>
       <p class="description"></p>
     </main>
 
