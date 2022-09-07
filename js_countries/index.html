@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <navbar>
+      <header>Where in the world</header>
+      <div class="dark-mode">Dark Mode</div>
+    </navbar>
+    <div class="main-display">
+      <section class="top-container">
+        <div class="search">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+            <g>
+              <path
+                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+              ></path>
+            </g>
+          </svg>
+          <input
+            placeholder="Search for a country"
+            type="search"
+            class="input"
+          />
+        </div>
+        <div class="dropdown">
+          <input
+            type="text"
+            class="textBox"
+            placeholder="Filter by Region"
+            readonly
+          />
+          <div class="option">
+            <div class="filterRegion">Africa</div>
+            <div class="filterRegion">America</div>
+            <div class="filterRegion">Asia</div>
+            <div class="filterRegion">Europe</div>
+            <div class="filterRegion">Oceania</div>
+          </div>
+        </div>
+      </section>
+      <section class="country-container"></section>
+    </div>
+
+    <div class="individual-display hidden">
+      <button>⏎ Back</button>
+      <section class="individual-container"></section>
+    </div>
+
+    <footer>Copyright © Rainey Schafer 2022</footer>
+  </body>
+</html>
