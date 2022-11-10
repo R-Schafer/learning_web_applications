@@ -1,7 +1,7 @@
 <img width="100%" alt="Project Name Banner" src="https://user-images.githubusercontent.com/71032629/201205424-83905edf-a906-433e-a989-806300a28382.png">
 
 <div align="center">
-  <h2>Created responsive calculator app</h2>
+  <h2>Created responsive calculator app.</h2>
 </div>
 
 
@@ -13,7 +13,6 @@
   <img alt="JavaScript" width="45px" src="https://user-images.githubusercontent.com/71032629/200982000-29c56eec-fcd8-4774-be8d-bf89e08277e8.svg" />
 </div>
 
-<br/>
 
 <div align="center">
   <h3>Check it out:</h3>
