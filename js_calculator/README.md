@@ -1,9 +1,15 @@
 <img width="100%" alt="Project Name Banner" src="https://user-images.githubusercontent.com/71032629/201205424-83905edf-a906-433e-a989-806300a28382.png">
 
 <div align="center">
-  <h2>Created responsive calculator app.</h2>
+  <h2>Created responsive calculator app that can handle addition, subtraction, multiplication, division, clearing out a number, backspace and negative/positive numbers.</h2>
+  <h3>Features:</h3>
+  • Clean and simple design<br/>
+  • Standard calculator functions<br/>
+  • Clear and backspace<br/>
+  • Negative/postive toggle button<br/>
 </div>
 
+#                         
 
 <div align="center">
   <h3>Made with:</h3>
