@@ -404,42 +404,29 @@ footer {
 @media only screen and (min-width: 768px) {
   .country-container {
     grid-template-columns: repeat(2, 50%);
-    /* grid-template-rows: repeat(2, 17%); */
   }
   .individual-display {
-    width: 75%;
+    width: 90%;
   }
 
   .individual-country {
-    width: 90%;
-  }
-  .individual-country-info {
-    width: 90%;
-    padding-left: 20px;
+    max-width: 700px;
   }
 }
 
 /* desktop */
-@media only screen and (min-width: 1265px) {
+@media only screen and (min-width: 1100px) {
   .country-container {
     grid-template-columns: repeat(4, 25%);
   }
 
-  .individual-display {
-    width: 90%;
-  }
-
   .individual-container {
     display: flex;
+    justify-content: center;
     margin-top: 3%;
   }
 
-  .individual-country {
-    width: 60%;
-  }
   .individual-country-info {
-    width: 40%;
-    padding-left: 10px;
     align-self: center;
     margin-top: 0;
   }

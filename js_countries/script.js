@@ -138,9 +138,6 @@ function render() {
         ${country.subregion}</div>
         <div class="individual-country-details"><span>Capital:</span> 
         ${country.capital[0]}</div>
-        <div class="break"></div>
-        <div class="individual-country-details"> <span>Top Level Domain:</span> 
-        ${country.tld}</div>
         <div class="individual-country-details"> <span>Currencies:</span> 
         ${Object.values(country.currencies)
           .map((currency) => currency.name)
@@ -148,7 +145,7 @@ function render() {
         <div class="individual-country-details"> <span>Languages:</span> 
         ${Object.values(country.languages).join(", ")}</div>
         <div class="break"></div>
-        <h4>Border Countries</h4>
+        <h4>Border Countries:</h4>
         <div class="border-countries">${borderCountryNames.join(", ")}</div>
       </div>
     
