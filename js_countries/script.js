@@ -20,6 +20,7 @@ const filterRegion = document.querySelectorAll(".filterRegion");
 const backBtn = document.querySelector("button");
 const setThemeColor = document.querySelector(".material-symbols-outlined");
 const spinner = document.querySelector(".spinner");
+const footer = document.querySelector("footer");
 
 async function main() {
   filterRegion.forEach((filterRegion) =>
@@ -37,6 +38,8 @@ async function main() {
 
   setTheme();
 
+  // add correct year to footer
+  footer.insertAdjacentHTML("beforeend", ` ${new Date().getFullYear()}`);
   await fetchCountries();
 }
 
@@ -82,6 +85,7 @@ function setTheme() {
 
 function render() {
   let country;
+
   if (STATE.individualCountryIndex >= 0 || STATE.typedCountry !== "") {
     // if user clicks on a specific country
     if (STATE.individualCountryIndex >= 0) {
@@ -152,9 +156,6 @@ function render() {
 
     // displaying all countries that correspond with the selected region
   } else {
-    // individualDisplay.classList.add("hidden");
-    // mainDisplay.classList.remove("hidden");
-
     countryContainer.innerHTML = "";
 
     for (let i = 0; i < STATE.limit; i++) {
