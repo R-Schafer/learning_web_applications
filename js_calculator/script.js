@@ -1,5 +1,7 @@
 const display = document.querySelector(".display");
 const keys = document.querySelectorAll(".keys");
+const footer = document.querySelector("footer");
+
 let STATE = ["", "", ""];
 
 function main() {
@@ -145,5 +147,8 @@ function render() {
     display.textContent = STATE[2];
   }
 }
+
+// add correct year to footer
+footer.insertAdjacentHTML("beforeend", ` ${new Date().getFullYear()}`);
 
 main();
