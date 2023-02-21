@@ -162,11 +162,13 @@ function render() {
         if (STATE.dropdownSelection === country.region) {
           countryContainer.innerHTML += `
             <div class="country" data-index=${i}>
-              <img src="${country.flags.svg}" 
-              alt="${country.name.common} flag" />
+              <div class="box">
+                <img src="${country.flags.svg}"
+                alt="${country.name.common} flag" />
+              </div>
               <div class="country-info">
-              <h3 class="country-info-details">
-              ${country.name.common}</h3>
+              <div class="country-info-details">
+              <h3>${country.name.common}</h3></div>
               <div class="country-info-details"> <span>Population:</span> 
               ${country.population.toLocaleString()}</div>
               <div class="country-info-details"> <span>Region:</span> 
@@ -181,11 +183,13 @@ function render() {
       } else {
         countryContainer.innerHTML += `
           <div class="country" data-index=${i}>
-            <img src="${country.flags.svg}"
-            alt="${country.name.common} flag" />
+            <div class="box">
+              <img src="${country.flags.svg}"
+              alt="${country.name.common} flag" />
+            </div>
             <div class="country-info">
-              <h3 class="country-info-details">
-              ${country.name.common}</h3>
+            <div class="country-info-details">
+            <h3>${country.name.common}</h3></div>
               <div class="country-info-details"> <span>Population:</span>
               ${country.population.toLocaleString()}</div>
               <div class="country-info-details"> <span>Region:</span>
