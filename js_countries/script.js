@@ -19,7 +19,7 @@ const countryContainer = document.querySelector(".country-container");
 const filterRegion = document.querySelectorAll(".filterRegion");
 const backBtn = document.querySelector("button");
 const setThemeColor = document.querySelector(".material-symbols-outlined");
-const spinner = document.querySelector(".spinner");
+const loader = document.querySelector(".loader");
 const footer = document.querySelector("footer");
 
 async function main() {
@@ -27,7 +27,7 @@ async function main() {
     filterRegion.addEventListener("click", handleRegionSelection)
   );
 
-  window.addEventListener("load", handleSpinner);
+  window.addEventListener("load", handleLoader);
   form.addEventListener("submit", handleSubmit);
   input.addEventListener("click", handleSearch);
   input.addEventListener("beforeinput", handleInput);
@@ -43,8 +43,8 @@ async function main() {
   await fetchCountries();
 }
 
-function handleSpinner() {
-  spinner.classList.toggle("off");
+function handleLoader() {
+  loader.classList.toggle("off");
 }
 
 function handleSearch() {
@@ -243,7 +243,7 @@ async function fetchCountries() {
   }
 
   render();
-  handleSpinner();
+  handleLoader();
 
   // setting the countries length to all matching countries after the initial 12
   STATE.limit = STATE.countries.length;
