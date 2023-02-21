@@ -15,10 +15,12 @@ let STATE = {
 const form = document.querySelector("#weather-location");
 const input = document.querySelector("#input-location");
 const main = document.querySelector("main");
+const footer = document.querySelector("footer");
 
 // rendering the state
 const render = () => {
   main.innerHTML = App(STATE);
+  footer.innerHTML = `Copyright ©️ Rainey Schafer ${new Date().getFullYear()}`;
 };
 
 // building the HTML as a string, depending on state
