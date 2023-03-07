@@ -1,8 +1,8 @@
 <img width="100%" alt="Project Name Banner" src="https://user-images.githubusercontent.com/71032629/201209708-4b35d170-4fb9-4b21-85a6-b9849255802b.png">
 
 <div align="center">
-  <h2>Created responsive app that allows the user to filter Countries by region,<br/>
-  search for a sepecific Country, and select a Country for additional details.</h2>
+  <h2>Created responsive app that allows the user to filter countries by region,<br/>
+  search for a specific country, and select a country for additional details.</h2>
 
   <h3>Features:</h3>
   • Search bar<br/>
@@ -22,16 +22,12 @@
   <img alt="JavaScript" width="45px" src="https://user-images.githubusercontent.com/71032629/200982000-29c56eec-fcd8-4774-be8d-bf89e08277e8.svg" />
 </div>
 
-
 <div align="center">
   <h3>Check it out:</h3>
   
   [![livesite](https://user-images.githubusercontent.com/71032629/201207872-083c93d8-5db6-4b78-b76d-f157eb09e004.svg)](https://magical-bublanina-122969.netlify.app/)
 </div>
 
-
-
 #
 
 <img width="100%" alt="Picture of countries" src="https://user-images.githubusercontent.com/71032629/201212388-2005f9c0-d5d0-4216-b77d-e7cce88d32fd.png">
-
