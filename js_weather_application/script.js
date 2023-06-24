@@ -1,5 +1,8 @@
-import { parse } from "https://cdn.jsdelivr.net/npm/date-fns@v2.28.0/+esm";
-import { zonedTimeToUtc } from "https://cdn.jsdelivr.net/npm/date-fns-tz@1.3.3/+esm";
+import * as dateFns from "https://cdn.skypack.dev/date-fns@2.28.0";
+import dateFnsTz from "https://cdn.skypack.dev/date-fns-tz@1.3.3";
+
+const parse = dateFns.parse;
+const zonedTimeToUtc = dateFnsTz.zonedTimeToUtc;
 
 // -------------------------------------------------------------------------------------
 // Model
@@ -41,13 +44,13 @@ const Weather = (data) => {
   return `
     <!-- first section -->
     ${CurrentWeatherSection(data)}
-    
+
     <!-- second section -->
     ${AverageWeatherSection(data)}
 
     <!-- third section -->
     ${HourlyWeatherSection(data)}
-    
+
     <!-- fourth section -->
     ${DailyWeatherSection(data)}
   `;
@@ -139,7 +142,7 @@ const CurrentWeatherSection = (data) => {
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   `;
 };
 
