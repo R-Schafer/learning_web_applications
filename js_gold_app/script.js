@@ -2,6 +2,9 @@ const elements = {
   get form() {
     return document.querySelector("form");
   },
+  get measurement() {
+    return document.getElementById("measurement");
+  },
   get carat() {
     return document.getElementById("carat");
   },
@@ -34,19 +37,22 @@ function calculateWorth(e) {
     elements.weight.value.match(/^\d+(\.\d+)?$/) &&
     elements.price.value.match(/^\d+(\.\d+)?$/)
   ) {
-    const worth = (
-      Math.round(
-        (((1 / 24) *
-          elements.carat.value *
-          elements.weight.value *
-          elements.price.value) /
-          31.1) *
-          100
-      ) / 100
-    ).toFixed(2);
-    elements.value.innerHTML = `Value = $${worth}`;
+    const percentOfGold = elements.carat.value / 24;
+    const price = elements.price.value;
+    const weight = elements.weight.value;
+
+    if (elements.measurement.value === "Grams") {
+      const grams = ((percentOfGold * price) / 31.1) * weight;
+
+      elements.value.innerHTML = `Value = $${grams.toFixed(2)}`;
+    } else {
+      const ounces = percentOfGold * price * weight;
+      elements.value.innerHTML = `Value = $${ounces.toFixed(2)}`;
+    }
   } else {
-    alert("Must use numbers only!");
+    alert(
+      "Must use numbers only! If using a decimal, please make sure there is a zero in front."
+    );
   }
 }
 

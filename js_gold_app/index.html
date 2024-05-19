@@ -12,6 +12,15 @@
       <header><h1>Gold Price</h1></header>
       <main>
         <form>
+          <label for="measurement"
+            >Measurement:
+            <select id="measurement" name="measurement">
+              Measurement:
+              <option label="Grams">Grams</option>
+              <option label="Ounces">Ounces</option>
+            </select> </label
+          ><br />
+
           <label for="carat"
             >Carat: <input type="text" id="carat" name="carat" /> </label
           ><br />
@@ -27,6 +36,14 @@
           <input type="submit" id="button" value="Submit" />
         </form>
         <span id="value"></span>
+        <p id="calculations">
+          <span id="gramsCalculation"
+            >Grams: carat / 24 * price / 31.1 * weight</span
+          ><br />
+          <span id="ouncesCalculation"
+            >Ounces: carat / 24 * price * weight</span
+          >
+        </p>
       </main>
       <footer>Copyright © Rainey Schafer</footer>
     </div>
